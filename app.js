@@ -1,55 +1,69 @@
-// detector de mayoria de edad //
+// Definición de un objeto Calculadora
+const Calculadora = {
+    // Propiedades
+    ultimoResultado: null,
+    historialResultados: [],
 
-// Solicitar al usuario que ingrese su edad
-const edad = prompt("Por favor, ingrese su edad:");
+    // Métodos
+    sumar: function (a, b) {
+        const resultado = a + b;
+        this.ultimoResultado = resultado;
+        this.historialResultados.push(resultado);
+        return resultado;
+    },
+    restar: function (a, b) {
+        const resultado = a - b;
+        this.ultimoResultado = resultado;
+        this.historialResultados.push(resultado);
+        return resultado;
+    },
+    multiplicar: function (a, b) {
+        const resultado = a * b;
+        this.ultimoResultado = resultado;
+        this.historialResultados.push(resultado);
+        return resultado;
+    },
+    dividir: function (a, b) {
+        if (b !== 0) {
+            const resultado = a / b;
+            this.ultimoResultado = resultado;
+            this.historialResultados.push(resultado);
+            return resultado;
+        } else {
+            this.ultimoResultado = "Error: No se puede dividir por cero.";
+            this.historialResultados.push(this.ultimoResultado);
+            return this.ultimoResultado;
+        }
+    }
+};
 
-// Convertir la entrada de texto a un número entero
-const edadNumero = parseInt(edad);
+// Captura de entradas
+const numero1 = parseFloat(prompt("Ingrese el primer número:"));
+const operacion = prompt("Elija una operación: suma, resta, multiplicación o división").toLowerCase();
+const numero2 = parseFloat(prompt("Ingrese el segundo número:"));
 
-// Verificar si la persona es mayor de edad
-if (edadNumero >= 18) {
-    console.log("Eres mayor de edad.");
-} else {
-    console.log("Eres menor de edad.");
+// Realiza operaciones utilizando el objeto Calculadora
+let resultado;
+switch (operacion) {
+    case "suma":
+        resultado = Calculadora.sumar(numero1, numero2);
+        break;
+    case "resta":
+        resultado = Calculadora.restar(numero1, numero2);
+        break;
+    case "multiplicacion":
+        resultado = Calculadora.multiplicar(numero1, numero2);
+        break;
+    case "division":
+        resultado = Calculadora.dividir(numero1, numero2);
+        break;
+    default:
+        resultado = "Operación no válida";
 }
 
+// Muestra resultados en la consola
+console.log(`Resultado de la ${operacion}: ${resultado}`);
+console.log(`Último resultado: ${Calculadora.ultimoResultado}`);
+console.log("Historial de resultados:", Calculadora.historialResultados);
 
-//detector de numeros pares e impares//
-
-// Solicitar al usuario que ingrese un número entero
-const numero = prompt("Por favor, ingresa un número entero:");
-
-// Convertir la entrada de texto a un número entero
-const numeroEntero = parseInt(numero);
-
-// Verificar si el número es par o impar
-if (isNaN(numeroEntero)) {
-    console.log("Por favor, ingresa un número válido.");
-} else if (numeroEntero % 2 === 0) {
-    console.log(`El número ${numeroEntero} es PAR.`);
-} else {
-    console.log(`El número ${numeroEntero} es IMPAR.`);
-}
-
-
-
-// contador utilizando ciclos //
-
-// Utilizando un ciclo for para mostrar números del 1 al 20
-for (let i = 1; i <= 20; i++) {
-    console.log(i);
-}
-
-
-
-// un contador del 10 al 0 //
-
-// Inicializamos una variable con el valor inicial
-let contador = 10;
-
-// Utilizando un ciclo while para contar hacia atrás desde 10 hasta 1
-while (contador >= 1) {
-    console.log(contador);
-    contador--; // Decrementa el contador en cada iteración
-}
 
