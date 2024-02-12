@@ -1,3 +1,5 @@
+// Primer pre-entrega "calculadora"
+
 // Definición de un objeto Calculadora
 const Calculadora = {
     // Propiedades
